@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\RpgEngine.Core\RpgEngine.Core.csproj" />
+    <ProjectReference Include="..\RpgEngine.Data\RpgEngine.Data.csproj" />
+    <ProjectReference Include="..\RpgEngine.LLM\RpgEngine.LLM.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
