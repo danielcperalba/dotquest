@@ -39,6 +39,27 @@ public class WorldGraph
         return _rooms.Keys;
     }
 
+    public IReadOnlyList<Connection> GetAvailableExits(string roomId, GameState state)
+    {
+        return GetExits(roomId)
+            .Where(c => ConditionEvaluator.Check(c.Condition, state))
+            .ToList()
+            .AsReadOnly();
+    }
+
+    public Room? Navigate(string fromRoomId, string direction, GameState state)
+    {
+        var connection = GetExits(fromRoomId)
+            .FirstOrDefault(c =>
+                c.Direction.Equals(direction, StringComparison.OrdinalIgnoreCase)
+                && ConditionEvaluator.Check(c.Condition, state));
+
+        if (connection is null)
+            return null;
+
+        return GetRoom(connection.To);
+    }
+
     public int RoomCount => _rooms.Count;
 
     public int ConnectionCount => _adjacency.Values.Sum(c => c.Count);
